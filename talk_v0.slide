@@ -1,0 +1,54 @@
+Gopher In the Mirror
+
+Aidan Coyle
+Software Engineer on UK
+acoyle@enova.com
+
+* The Dream
+
+I wanted a library to parse data into a struct using a regex
+
+.code wall_test.go /START EXAMPLE/,/END EXAMPLE/
+
+* What is Reflection?
+
+Reflection is the ability of the runtime to inspect itself. It has a number of uses
+
+- Checking types at runtime
+- Accessing information from unknown types
+- Struct tags
+
+It's rather dangerous, but sometimes what you need
+
+* Go's Reflect Package
+
+The `reflect` package in the go standard library has a couple basic elements.
+
+- `reflect.Type` represents information about a _class_ of things
+- `reflect.Value` gives access to information about an _instance_ of something
+
+* Example: Type Switching
+
+We can use `value.Kind()` to check type at a high level
+
+.code wall.go /START SWITCH/,/END SWITCH/
+
+* Example: Value Manipulation
+
+`reflect.Value` can be written to as well as read from
+
+.code wall.go /START MANIP/,/END MANIP/
+
+* Example: Struct Tags
+
+.code wall.go /START TAGS/,/END TAGS/
+
+* Take Care
+
+The `reflect` package has some danger built in. A few tips
+
+- Always check `Kind()` before doing anything with `Type()` of a `Value`
+- Watch out for pointers
+- Don't use reflection as a replacement for interfaces
+
+You can check out [[https://github.com/packrat386/wall]] for the full source code
